@@ -7,23 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(cors("http://localhost:5173"));
 
-// List of the users registered
-
 app.get("/users", async (req, res) => {
-  try {
-    const allUsers = await prisma.user.findMany();
-    include:{
 
-      address: true,
-
-    },
-    console.log("Usuários encontrados:", allUsers);
-    res.status(200).json(allUsers); // Aqui talvez você queira retornar os usuários depois
-  } catch (error) {
-    console.error("Erro ao buscar usuários:", error);
-    res.status(500).json({ error: "Erro ao buscar usuários" });
-  }
-});
+  const allUsers = await prisma.user.findMany();
+  res.status(200).json(allUsers);
+})
 
 // Register user
 
@@ -47,7 +35,7 @@ app.put("/create-users/:id", async (req, res) => {
     where: { id: req.params.id },
 
     data: {
-      age: req.body.age,
+      address: req.body.address,
     },
   });
 
@@ -71,8 +59,10 @@ app.delete("/create-users/:id", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor rodando em http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 //http://localhost:3000/

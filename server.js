@@ -1,13 +1,30 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
-
 const app = express();
-app.use(express.json());
-app.use(cors("http://localhost:5173"));
 
-// List of the users registered
+// 🔐 CORS configurado com origens permitidas
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://devburger-backend-7fba.onrender.com", // backend na render
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+};
+
+// 🛡️ Middlewares
+app.use(express.json());
+app.use(cors(corsOptions));
+
 
 app.get("/users", async (req, res) => {
 
@@ -61,8 +78,10 @@ app.delete("/create-users/:id", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor rodando em http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 //http://localhost:3000/

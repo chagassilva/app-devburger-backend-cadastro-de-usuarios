@@ -19,3 +19,8 @@ npx prisma studio
 Cors
 
 yarn add cors
+
+
+Railway
+
+node build.js && npx prisma db pull && npx prisma studio --port 3000
