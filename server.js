@@ -8,7 +8,7 @@ const app = express();
 // 🔐 CORS configurado com origens permitidas
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://devburger-backend-7fba.onrender.com", // backend na render
+  "https://app-devburger-frontend-cadastro-de.vercel.app", // frontend do vercel
 ];
 
 const corsOptions = {
