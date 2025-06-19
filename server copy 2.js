@@ -1,13 +1,31 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
-
 const app = express();
+
+// 🔐 CORS configurado com origens permitidas
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://app-devburger-frontend-cadastro-de.vercel.app", // frontend do vercel
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+};
+
+// 🛡️ Middlewares
 app.use(express.json());
-app.use(cors("http://localhost:5173"));
+app.use(cors(corsOptions));
 
-
+/////////
 
 app.get("/users", async (req, res) => {
 
