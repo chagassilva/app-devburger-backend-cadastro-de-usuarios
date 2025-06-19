@@ -24,3 +24,10 @@ yarn add cors
 Railway
 
 node build.js && npx prisma db pull && npx prisma studio --port 3000
+
+
+IP bloqueando pelo o mongodb
+
+Network Access > IP Whitelist (ou IP Access List)
+
+add 0.0.0.0/0
