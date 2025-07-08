@@ -2,7 +2,8 @@
 
 const allowedOrigins = [
   'http://localhost:5173',
-  "https://devusuario.chagassilva.com"
+  "https://devusuario.chagassilva.com",
+  "https://api.devusuario.chagassilva.com"
 ];
 
 const corsOptions = {
