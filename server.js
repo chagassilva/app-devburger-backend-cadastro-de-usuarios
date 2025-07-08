@@ -8,8 +8,10 @@ const app = express();
 // 🔐 CORS configurado com origens permitidas
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://app-devburger-frontend-cadastro-de.vercel.app", // frontend do vercel
+  "https://app-devburger-frontend-cadastro-de.vercel.app",
+  "https://devusuario.chagassilva.com" // Adicione aqui seu domínio do frontend
 ];
+
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -81,7 +83,7 @@ app.delete("/create-users/:id", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
 
