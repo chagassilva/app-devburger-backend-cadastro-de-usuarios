@@ -8,6 +8,7 @@ const app = express();
 // 🔐 CORS configurado com origens permitidas
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://api.devusuario.chagassilva.com",
   "https://app-devburger-frontend-cadastro-de.vercel.app",
   "https://devusuario.chagassilva.com" // Adicione aqui seu domínio do frontend
 ];
