@@ -2,7 +2,6 @@
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://app-devburger-frontend.vercel.app',
   "https://devusuario.chagassilva.com"
 ];
 
